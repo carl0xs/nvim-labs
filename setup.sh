@@ -5,10 +5,10 @@ TARGET_DIR="$HOME/.config/nvim-labs"
 FISH_CONF="$HOME/.config/fish/config.fish"
 
 if [ ! -d "$TARGET_DIR" ]; then
-    echo "Clonando configurações para $TARGET_DIR..."
+    echo "Clone for $TARGET_DIR..."
     git clone "$REPO_URL" "$TARGET_DIR"
 else
-    echo "Diretório $TARGET_DIR já existe."
+    echo "Directory $TARGET_DIR already exists."
 fi
 
 cat << 'EOF' >> "$FISH_CONF"
@@ -27,7 +27,7 @@ function nv-set
     set -l conf (ls -d $HOME/.config/$NVIM_BASE_DIR/*/ | xargs -n 1 basename | fzf --prompt="Definir Padrão Permanente: " --height=20% --reverse)
     if test -n "$conf"
         echo "$conf" > "$NVIM_CONFIG_FILE"
-        echo "Padrão definido para: $conf"
+        echo "Default set: $conf"
     end
 end
 
@@ -43,14 +43,13 @@ end
 function nlu
     set -l current_dir (pwd)
     if test -d $TARGET_DIR
-        echo "Entrando em $TARGET_DIR..."
         cd $TARGET_DIR
-        echo "Buscando atualizações..."
+        echo "Search updates..."
         git pull
         cd $current_dir
-        echo "Atualização concluída."
+        echo "Update ready."
     else
-        echo "Erro: Diretorio $TARGET_DIR nao encontrado."
+        echo "Error: Directory $TARGET_DIR not found."
     end
 end
 # ------------------------------
