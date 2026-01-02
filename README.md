@@ -5,6 +5,7 @@ Este repo centraliza diferentes abordagens e experimentos de configuracao do neo
 _setup.sh_ é apenas um utilitario para clonar este repositório para '.config/' e definir funcões de shell como:
 
 'nv' - para escolher qual configuracao quero usar. 
+
 'nvim-labs-update' - puxar as atualizacoes destr repo de qualquer lugar que eu estiver.
 
 
