@@ -39,6 +39,20 @@ function nvim
         command nvim $argv
     end
 end
+
+function nvim-labs-update
+    set -l current_dir (pwd)
+    if test -d $TARGET_DIR
+        echo "Entrando em $TARGET_DIR..."
+        cd $TARGET_DIR
+        echo "Buscando atualizações..."
+        git pull
+        cd $current_dir
+        echo "Atualização concluída."
+    else
+        echo "Erro: Diretorio $TARGET_DIR nao encontrado."
+    end
+end
 # ------------------------------
 EOF
 
