@@ -40,7 +40,7 @@ function nvim
     end
 end
 
-function nvim-labs-update
+function nlu
     set -l current_dir (pwd)
     if test -d $TARGET_DIR
         echo "Entrando em $TARGET_DIR..."
