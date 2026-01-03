@@ -1,3 +1,19 @@
+" -----------------------------------------
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  echo "Instalando vim-plug..."
+  if executable('curl')
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  elseif executable('wget')
+    silent execute '!wget -P '.data_dir.'/autoload/ --recursive --level=1 --no-directories --no-host-directories https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  else
+    echoerr "Erro: curl ou wget não encontrados. Instale um deles para baixar o vim-plug."
+  endif
+  
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" -----------------------------------------
+
 let mapleader = " "
 set autoindent
 set clipboard+=unnamedplus
