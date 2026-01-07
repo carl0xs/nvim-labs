@@ -237,11 +237,7 @@ require("lazy").setup({
 				automatic_installation = false
 			})
 		end,
-	}, 
-	{
-		"tpope/vim-fugitive",
-		event = 'BufWinEnter'
-	}, 
+	},
 	{
 		"lewis6991/gitsigns.nvim", 
 		dependencies = {
@@ -305,18 +301,9 @@ require("lazy").setup({
       })
     end,
   },
-  {
-    "preservim/nerdtree", 
-  },
   { 
     "Leviathenn/nvim-transparent"
   }, 
-  {
-      '2kabhishek/tdo.nvim',
-      dependencies =  '2kabhishek/pickme.nvim',
-      cmd = { 'Tdo' },
-      keys = { '<leader>nn', '<leader>nf', '<leader>nh', '<leader>nl', '<leader>nt', '<leader>nx', '[t', ']t' },
-  },
   {
     'MeanderingProgrammer/markdown.nvim',
     main = "render-markdown",
@@ -324,25 +311,9 @@ require("lazy").setup({
     name = 'render-markdown',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
   },
-  { "ellisonleao/gruvbox.nvim" }
-})
-
-local tdo = require('tdo')
-
-tdo.setup({
-    add_default_keybindings = true, -- Add default keybindings for the plugin
-    completion = {
-        offsets = {},               -- Custom offsets / date expressions for completion
-        ignored_files = { 'README.md', 'templates' }, -- Files/directories to ignore in completions
-    },
-    cache = {                       -- You don't really need to change these
-        timeout = 5000,             -- Completion cache timeout in milliseconds
-        max_entries = 100,          -- Maximum number of cached completion entries
-    },
-    lualine = {                     -- Only used for lualine integration
-        update_frequency = 300,     -- How frequently to update the pending todo count in lualine
-        only_show_in_notes = false, -- Whether to show the lualine component only in notes buffers
-    }
+  { "ellisonleao/gruvbox.nvim" },
+  { "nvim-tree/nvim-web-devicons" },
+  { "nvim-tree/nvim-tree.lua" }
 })
 
 require("gruvbox").setup({
@@ -368,4 +339,6 @@ require("gruvbox").setup({
   dim_inactive = false,
   transparent_mode = false,
 })
+
+require("nvim-tree").setup()
 vim.cmd("colorscheme gruvbox")

@@ -21,7 +21,7 @@ nmap<leader>cf :vsplit ~/.config/nvim/init.lua<cr>
 
 
 "keymaps
-nmap<leader>e :NERDTreeFind<CR>
+nmap<leader>e :NvimTreeFindFileToggle<CR>
 nmap<leader>ff :FzfLua files <CR>
 nmap<leader>fg :FzfLua grep_project<cr>
 nmap<C-s> :w!<CR>
