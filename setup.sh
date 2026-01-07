@@ -3,6 +3,8 @@
 REPO_URL="https://github.com/carl0xs/nvim-labs.git"
 TARGET_DIR="$HOME/.config/nvim-labs"
 FISH_CONF="$HOME/.config/fish/config.fish"
+NVIM_DIR="$HOME/.config/nvim"
+NVIM_BACKUP="$HOME/.config/nvim.backup"
 
 if [ ! -d "$TARGET_DIR" ]; then
     echo "Clone for $TARGET_DIR..."
@@ -24,10 +26,27 @@ function nv
 end
 
 function nv-set
-    set -l conf (ls -d $HOME/.config/$NVIM_BASE_DIR/*/ | xargs -n 1 basename | fzf --prompt="Definir Padrão Permanente: " --height=20% --reverse)
+    set -l conf (ls -d $HOME/.config/$NVIM_BASE_DIR/*/ | xargs -n 1 basename | fzf --prompt="Definir como ~/.config/nvim: " --height=20% --reverse)
     if test -n "$conf"
         echo "$conf" > "$NVIM_CONFIG_FILE"
         echo "Default set: $conf"
+
+        set -l nvim_dir "$HOME/.config/nvim"
+        set -l nvim_backup "$HOME/.config/nvim.backup"
+        set -l choice_dir "$HOME/.config/$NVIM_BASE_DIR/$conf"
+
+        if test -d "$nvim_dir"
+            rm -rf "$nvim_backup"
+            mkdir -p "$nvim_backup"
+            rsync -a --delete "$nvim_dir"/ "$nvim_backup"/
+        end
+
+        rm -rf "$nvim_dir"
+        mkdir -p "$nvim_dir"
+
+        rsync -a "$choice_dir"/ "$nvim_dir"/
+
+        echo "Now using: $conf"
     end
 end
 
@@ -37,19 +56,6 @@ function nvim
         env NVIM_APPNAME="$NVIM_BASE_DIR/$current_config" command nvim $argv
     else
         command nvim $argv
-    end
-end
-
-function nlu
-    set -l current_dir (pwd)
-    if test -d $TARGET_DIR
-        cd $TARGET_DIR
-        echo "Search updates..."
-        git pull
-        cd $current_dir
-        echo "Update ready."
-    else
-        echo "Error: Directory $TARGET_DIR not found."
     end
 end
 # ------------------------------
