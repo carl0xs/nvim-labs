@@ -8,8 +8,8 @@ _setup.sh_ é apenas um utilitario para clonar este repositório para '.config/'
 
 **nvim-labs-update** - puxar as atualizacoes destr repo de qualquer lugar que eu estiver.
 
-
-> Nota:
-> Atualmente também uso uma outra configuração do neovim que é totalmente sem plugins, onde faço minhas proprias integracoes e tento usar ao maximo o buint-in. 
-
-[Purevim](https://github.com/carl0xs/purevim.git)
+1 - Lua 
+2 - Vimscript 
+3 - Nvim-packer - Packer manager builtin neovim 
+3 - [Purevim](https://github.com/carl0xs/purevim.git)
+4 - [Nixvim](https://github.com/carl0xs/nixcfg/modules/workstation/neovim.nix)
